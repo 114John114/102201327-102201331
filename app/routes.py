@@ -1,14 +1,22 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, Flask
+import MySQLdb.cursors
+from . import mysql
+
 
 main = Blueprint('main', __name__)
-
-# 临时存储用户信息(实际上应存储在数据库中）
-users = {}
 
 @main.route('/')
 def home():
     if 'username' in session:
-        return render_template('home.html', username=session['username'])
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("""
+            SELECT p.id, p.project_name,p.project_leader, p.description,  GROUP_CONCAT(m.name SEPARATOR ', ') AS members
+            FROM projects p
+            LEFT JOIN members m ON p.id = m.projectid
+            GROUP BY p.id, p.project_name
+        """)
+        projects = cursor.fetchall()
+        return render_template('home.html', username=session['username'], projects=projects)
     return redirect(url_for('main.login'))
 
 @main.route('/register', methods=['GET', 'POST'])
@@ -17,11 +25,16 @@ def register():
         username = request.form['username']
         password = request.form['password']
 
-        # 注册逻辑：简单存储用户信息
-        if username in users:
+        # 注册逻辑：存储用户信息到 MySQL 数据库
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+        account = cursor.fetchone()
+        if account:
             return '用户名已存在，请重新注册！'
-        users[username] = password
-        return redirect(url_for('main.login'))  # 注册成功后重定向到登录页面
+        else:
+            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+            mysql.connection.commit()
+            return redirect(url_for('main.login'))  # 注册成功后重定向到登录页面
 
     return render_template('register.html')
 
@@ -31,11 +44,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        # 验证用户信息
-        if username in users and users[username] == password:
+         # 验证用户信息
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+        account = cursor.fetchone()
+        if account:
             session['username'] = username  # 记录登录状态
             return redirect(url_for('main.home'))  # 登录成功后重定向到主页
-        return '用户名或密码错误！'
+        else:
+            return '用户名或密码错误！'
 
     return render_template('login.html')
 
