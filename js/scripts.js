@@ -28,7 +28,6 @@ $(document).ready(function() {
 		}
 	});
 
-
 	var owl = $('.owl-carousel').owlCarousel({
 		autoplay: true,
 		autoplayTimeout: 4000,
@@ -60,3 +59,4 @@ $(document).ready(function() {
 	    $( "#datepicker" ).datepicker('option', 'dateFormat', 'DD, d MM, yy');
 	});
 });
+

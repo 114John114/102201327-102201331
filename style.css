@@ -24,10 +24,6 @@
 		overflow-x: hidden;
 	  	}
 
-	body, html{
-		
-	}
-
 	.container{
 		position: relative;
 		width: 1200px;
@@ -599,11 +595,6 @@
 		margin:100px 0 0 0;
 		padding:0 0 0 0;
 	}
-	.reviewslider{}
-	.reviewslider .item{}
-	.reviewslider .item .itemcontent{
-
-	} 
 	.reviewslider .item .itemcontent .textbox{
 		float: left;
 		width: 100%;
@@ -846,4 +837,201 @@
 		font-family:'Poppins';
 		font-weight: 400;
 		margin-bottom: 0;
+	}
+	.dashboard {
+		display: flex;
+		height: 100vh;
+	}
+	.sidebar {
+		position: fixed; /* 固定在左侧 */
+		top: 0;
+		left: 0;
+		width: 60px; /* 初始宽度为60px */
+		height: 100vh; /* 占据整个视窗高度，确保菜单栏填满左侧 */
+		background-color: #333; /* 背景颜色 */
+		color: #fff;
+		transition: width 0.3s ease; /* 菜单栏展开的平滑过渡效果 */
+		overflow: hidden; /* 隐藏超出部分 */
+		z-index: 1000; /* 让菜单栏位于其他内容之上 */
+	}
+	.sidebar:hover {
+		width: 200px; /* 鼠标悬停时展开 */
+	}
+	.profile {
+		text-align: center;
+		padding: 20px 0;
+	}
+	.avatar {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-bottom: 10px;
+	}
+	.yourname {
+		display: none;
+		font-size: 18px;
+	}
+	.sidebar:hover .yourname {
+		display: block; /* 悬停后显示用户名 */
+	}
+	.lmenu {
+		list-style-type: none;
+		padding: 0;
+	}
+	.lmenu li {
+		padding: 15px;
+		text-align: center;
+		transition: background-color 0.3s;
+	}
+	.lmenu li:hover {
+		background-color: #444;
+	}
+	.lmenu li a {
+		text-decoration: none;
+		color: #fff;
+		display: block;
+	}
+	.lmenu li a:hover {
+		text-decoration: underline;
+	}
+	h1, h2 {
+		margin: 0;
+		padding: 10px;
+	}
+	
+	p {
+		margin: 0;
+		padding: 10px;
+	}
+	.projectcontent {
+		flex-grow: 1;
+		padding: 20px;
+	}
+	
+	/* 项目内容 */
+	.projects {
+		display: flex;
+		flex-direction: column; /* 每行一个项目 */
+		gap: 20px; /* 项目之间的间距 */
+	}
+	
+	.project-item {
+		background-color: #2186f2; /* 项目框的背景色 */
+		color: white;
+		border-radius: 10px; /* 圆角 */
+		padding: 20px;
+		cursor: pointer; /* 鼠标悬停时变为手型 */
+		transition: transform 0.2s; /* 添加动态效果 */
+	}
+	
+	.project-item:hover {
+		transform: scale(1.02); /* 悬停时稍微放大 */
+	}
+	
+	.project-header {
+		display: flex;
+		justify-content: space-between; /* 分类和项目名称之间的空间 */
+	}
+	
+	.category {
+		background-color: #ff4081; /* 分类背景色 */
+		color: white;
+		padding: 5px 8px;
+		border-radius: 5px; /* 分类圆角 */
+		height: 30px;
+	}
+	
+	.description, .participants {
+		margin-top: 10px;
+		color: #000000; /* 描述的文字颜色 */
+		background-color: rgb(73, 206, 239);
+	}
+	
+	/* 创建项目按钮样式 */
+	.create-project {
+		background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+		color: #007bff; /* 字体颜色 */
+		border: 2px dashed #007bff; /* 虚线边框 */
+		border-radius: 10px;
+		padding: 20px;
+		text-align: center;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.create-project:hover {
+		background-color: rgba(255, 255, 255, 1); /* 悬停时变为不透明 */
+	}
+
+	.add-icon {
+		font-size: 48px; /* 加号图标 */
+		display: block;
+		margin-bottom: 10px;
+	}
+		
+	.welcome-title {
+		font-size: 60px; /* 增大字体大小 */
+		font-family: 'Pacifico', cursive; /* 使用引入的艺术字体 */
+		color: #166dde; /* 字体颜色 */
+		text-align: center; /* 居中对齐 */
+		text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 字体阴影 */
+		margin: 20px 0; /* 上下外边距 */
+	}
+	.create-project-form {
+		display: flex;
+    	flex-direction: column; /* 垂直布局 */
+    	gap: 20px; /* 每个表单元素之间的间距 */
+	}
+
+	input[type="text"], input[type="file"], select, textarea {
+		width: 100%;
+		padding: 12px 15px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		font-size: 16px;
+		transition: border-color 0.3s ease;
+	}
+
+	input[type="text"]:focus, input[type="file"]:focus, select:focus, textarea:focus {
+		border-color: #007bff;
+		outline: none;
+	}
+	input[type="file"] {
+		background-color: #f9f9f9;
+		border: 1px dashed #ccc;
+		padding: 12px;
+		cursor: pointer;
+	}
+	input[type="file"]::-webkit-file-upload-button {
+		background-color: #007bff;
+		color: white;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	input[type="file"]::-webkit-file-upload-button:hover {
+		background-color: #0056b3;
+	}
+	
+	.create-project-form label {
+		font-weight: bold;
+		margin-bottom: 5px;
+		color: #333;
+	}
+
+	.create-project-form button {
+		padding: 12px 20px;
+		background-color: #007bff;
+		color: white;
+		font-size: 18px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.3s ease;
+	}
+	.create-project-form button:hover {
+		background-color: #0056b3;
+		transform: scale(1.05);
 	}
