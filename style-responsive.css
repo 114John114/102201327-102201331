@@ -105,8 +105,6 @@
 		justify-content: center;
 		flex-wrap: wrap;
 	}
-	.menuicons a:hover{
-	}
 	nav{
 		display: none;
 		position: fixed;
@@ -318,8 +316,6 @@
 		font-size: 36px;
 		margin-bottom: 10px
 	}
-	.reviewslider .item .itemcontent .textbox{
-	} 
 	.reviewslider .item .itemcontent .textbox h4{
 		font-size:16px;
 	}

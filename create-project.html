@@ -46,7 +46,36 @@
                 </ul>
             </div>
             <!--中间项目内容区域-->
-            
+            <div class="container">
+                <h1 class="welcome-title">项目名称：</h1>
+                <form id="create-project-form" class="create-project-form" action="create-project.php" method="post">
+                    <label for="project-name">项目名称：</label>
+                    <input type="text" id="project-name" name="project-name" required>
+
+                    <label for="create-category">项目分类：</label>
+                    <select id="create-category" required>
+                        <option value="科研项目">科研项目</option>
+                        <option value="比赛">比赛</option>
+                        <!--可以添加更多分类-->
+                    </select>
+
+                    <label for="manager">项目负责人：</label>
+                    <input type="text" id="manager" name="manager" required>
+
+                    <label for="project-description">项目描述：</label>
+                    <textarea id="project-description" name="description" required></textarea>
+
+                    <label for="image">上传展示图片：</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+
+                    <label for="participants">招收人员类别和数量：</label>
+                    <textarea id="participants" name="participants" required></textarea>
+
+                    <button type="submit">创建项目</button>
+                </form>
+            </div>
+
+
         </div>
         
     </body>

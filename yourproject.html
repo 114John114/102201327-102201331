@@ -28,7 +28,7 @@
                 });
             </script>	
     </head>
-
+    
     <body>
         <div class="dashboard">
             <!--左边菜单栏-->
@@ -46,9 +46,25 @@
                 </ul>
             </div>
             <!--中间项目内容区域-->
-            
-        </div>
-        
-    </body>
 
+
+        <div class="projectcontent">
+            <h1 class="welcome-title">管理项目</h1>
+            <div class="projects">
+                <div class="project-item" onclick="location.href='project-details.html';">
+                    <div class="project-header">
+                        <span class="category">科研项目</span>
+                        <h2>项目名称 1</h2>
+                    </div>
+                </div>
+                    <!--更多项目-->
+                    <!--创建项目按钮-->
+                <div class="create-project" onclick="location.href='create-project.html';">
+                    <span class="add-icon">+</span>
+                    <p>创建项目</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
 </html>

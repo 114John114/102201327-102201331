@@ -28,7 +28,7 @@
                 });
             </script>	
     </head>
-
+    
     <body>
         <div class="dashboard">
             <!--左边菜单栏-->
@@ -45,10 +45,32 @@
                     <li><a href="Index.html">注销</a></li>
                 </ul>
             </div>
+
             <!--中间项目内容区域-->
-            
+            <div class="projectcontent">
+                <h1 class="welcome-title">欢迎来到项目大厅</h1>
+                <div class="projects">
+                    <div class="project-item" onclick="location.href='project-details.html';">
+                        <div class="project-header">
+                            <span class="category">比赛</span>
+                            <h2>比赛名称</h2>
+                        </div>
+                        <p class="description">招收人员: 代码手、建模手</p>
+                        <p class="participants">已报名人数: 10 / 20</p>
+                    </div>
+                    <div class="project-item" onclick="location.href='project-details.html';">
+                        <div class="project-header">
+                            <span class="category">科研项目</span>
+                            <h2>科研项目名称</h2>
+                        </div>
+                        <p class="description">招收人员: 数据分析师</p>
+                        <p class="participants">已报名人数: 5 / 15</p>
+                    </div>
+                    <!-- 更多项目 -->
+                </div>
+            </div>
+
         </div>
-        
     </body>
 
 </html>
