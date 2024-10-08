@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>大厅</title>
+        <title>创建新项目</title>
             <!--主要使用的字体-->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap">
             <link href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -46,7 +46,7 @@
                 </ul>
             </div>
             <!--中间项目内容区域-->
-            <div class="container">
+            <div class="projectcontent">
                 <h1 class="welcome-title">项目名称：</h1>
                 <form id="create-project-form" class="create-project-form" action="create-project.php" method="post">
                     <label for="project-name">项目名称：</label>
@@ -68,8 +68,11 @@
                     <label for="image">上传展示图片：</label>
                     <input type="file" id="image" name="image" accept="image/*" required>
 
-                    <label for="participants">招收人员类别和数量：</label>
+                    <label for="participants">项目需求：</label>
                     <textarea id="participants" name="participants" required></textarea>
+
+                    <label for="participants-number">招收人数：</label>
+                    <input type="number" id="participants-number" name="participants-number" required>
 
                     <button type="submit">创建项目</button>
                 </form>
