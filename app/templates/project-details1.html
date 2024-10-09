@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+    {% include 'head.html' %}
+    
+    <body>
+        <div class="dashboard">
+            {% include 'sidebar.html' %}
+            <!--中间内容-->
+            <div class="projectcontent">
+                <h1 id="projectName">项目名称:{{project.project_name}}</h1> <!-- 项目名称 -->
+                <div class="project-info">
+                    <p><strong>项目分类:</strong> <span id="projectCategory">{{project.project_type}}</span></p> <!-- 项目分类 -->
+                    <p><strong>项目负责人:</strong> <span id="projectManager">{{project.project_leader}}</span></p> <!-- 项目负责人 -->
+                    <p><strong>项目描述:</strong></p>
+                    <p id="projectDescription">{{project.description}}</p> <!-- 项目描述 -->
+                    <img id="projectImage" src="{{project.project_image}}" alt="项目图片" class="project-image"> <!-- 项目图片 -->
+                    <p><strong>项目需求:</strong> <span id="projectRequirements">{{project.requirements}}</span></p> <!-- 项目需求 -->
+                    <p><strong>最大招收人数:</strong> <span id="projectRecruitment">{{project.maxmembers}}</span></p> <!-- 招收人数 -->
+                </div>
+        
+                <!-- 加入项目按钮 -->
+                <button id="joinProjectButton" class="joinProjectButton">加入项目</button>
+            </div>
+
+        </div>
+
+        <script src="js/projectdetail1.js"></script>
+    </body>

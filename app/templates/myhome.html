@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+    {% include 'head.html' %}
+    
+    <body>
+        <div class="dashboard">
+            {% include 'sidebar.html' %}
+            <!--中间内容-->
+            <div class="projectcontent">
+                <h1 class="welcome-title">个人信息</h1>
+                <div class="person-profile">
+                    <!--头像上传-->
+                    <div class="avatar-container">
+                        <img src="{{g.avatar_url}}" alt="Avatar" class="avatar">
+                    </div>
+
+                    <!--个人信息表单-->
+                    <form id="profileForm" method="post" action="{{url_for('main.update_profile')}}">
+                        <label for="username">用户名:</label>
+                        <input type="text" id="username" name="username" value="{{ user.username }}" disabled>
+        
+                        <label for="email">邮箱:</label>
+                        <input type="email" id="email" name="email" value="{{ user.mail }}" disabled>
+                        
+                        <label for="password">修改密码:</label>
+                        <input type="password" id="password" name="password" placeholder="输入新密码" disabled>
+
+                        <h3>一周空闲时间表</h3>
+                        <div class="schedule">
+                            <label>星期一:</label><input type="text" id="monday" name="monday" value="{{ schedule[0] }}" disabled>
+                            <label>星期二:</label><input type="text" id="tuesday" name="tuesday" value="{{ schedule[1] }}" disabled>
+                            <label>星期三:</label><input type="text" id="wednesday" name="wednesday" value="{{ schedule[2] }}" disabled>
+                            <label>星期四:</label><input type="text" id="thursday" name="thursday" value="{{ schedule[3] }}" disabled>
+                            <label>星期五:</label><input type="text" id="friday" name="friday" value="{{ schedule[4] }}" disabled>
+                            <label>星期六:</label><input type="text" id="saturday" name="saturday" value="{{ schedule[5] }}" disabled>
+                            <label>星期天:</label><input type="text" id="sunday" name="sunday" value="{{ schedule[6] }}" disabled>
+                        </div>
+                        <!-- 修改密码按钮 -->
+                    <button type="button" id="editButton">修改信息</button>
+                    <!-- 保存和取消按钮，初始隐藏 -->   
+                    <button type="submit" id="saveButton" style="display: none;">保存修改</button>
+                    <button type="button" id="cancelButton" style="display: none;">取消</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
