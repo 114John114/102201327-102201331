@@ -1,0 +1,14 @@
+<!--左边菜单栏-->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="{{g.avatar_url}}" alt="Avatar" class="avatar">
+        <h3 class="yourname">{{username}}</h3>
+    </div>
+    <ul class="lmenu">
+        <li><a href="{{url_for('main.home')}}" class="active">项目大厅</a></li>
+        <li><a href="{{url_for('main.myprojects')}}">项目管理</a></li>
+        <li><a href="{{url_for('main.message')}}">消息</a></li>
+        <li><a href="{{url_for('main.myhome')}}">我的</a></li>
+        <li><a href="{{url_for('main.logout')}}">注销</a></li>
+    </ul>
+</div>

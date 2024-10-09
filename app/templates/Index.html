@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <!--主要使用的字体-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-linear.css') }}">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='style-responsive.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='owl-slider/owl.carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script>
+        jQuery(document).ready(function( $ ) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 2000
+            });
+        });
+    </script>    
+</head>
+
+<body id="home">
+    <header>
+        <header>
+            <div class="container">
+                <a href="{{url_for('main.login')}}" class="logo"><img src="{{url_for('static', filename='images/logo1.png')}}" alt="" /></a>
+    
+                <div class="menuicons" style="display:none;">
+                    <a href="javascript:void();" class="shownav">
+                        <span class="fa-solid fa-bars"></span>
+                    </a>
+                    <a href="javascript:void();" class="hidenav" style="display:none;">
+                        <span class="fa-solid fa-times"></span>
+                    </a>
+                </div>
+                <nav class="headernav" id="headnav">
+                    <ul>
+                        <li class="active"><a href="#home">Home</a></li>
+                        <li><a href="#services">Dental Services</a></li>
+                        <li><a href="#about">About Doctor</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <!--<ul class="contact">
+                    <li><span class="fa fa-phone"></span>  &nbsp; +1 123.456.7890 </li>
+                    <li><span class="fa-regular fa-envelope"></span>  &nbsp; <a href="mailto:drjane@siteurl.com;">drjane@siteurl.com</a></li>
+                </ul>-->
+            </div>
+    </header>
+    <!--header-->
+
+    <div class="banner">
+        <div class="bannercontent">
+
+            <div class="bannertextwrap">
+				<div class="container">
+					<div class="bannertext">
+						<h2>
+							帮助您在奋斗的道路上畅通无阻
+						</h2>
+					</div>
+				</div>
+			</div>
+			<!--bannertextwrap-->
+            
+            <div class="videoouter">
+                <img src="{{url_for('static', filename='images/bannerimg.png')}}" alt="" />
+            </div>
+            <!--bannerimg-->
+
+        </div>
+        <!--bannercontent-->
+
+        <div class="formwrap">
+            <div class="container">
+                <div class="formarea" id="formarea">
+                    <h2>
+                        ProjectPartner
+                    </h2>
+                    <form id="loginform" action="login" method="post">
+                         <!-- 用户名输入框 -->
+                        <label class="full">
+                            <input type="text" name="username" placeholder="用户名*" required>
+                        </label>
+                        <!-- 密码输入框 -->
+                        <label class="full">
+                            <input type="password" name="password" placeholder="密码*" required>
+                        </label>
+                        <!-- 登录按钮 -->
+                        <label>
+                        <button type="submit" name="submit" class="btn">登录</button>
+                        </label>
+                        <!-- 响应信息框 -->
+                        <div class="responsetype"></div>
+                    </form>
+                    <!-- 注册提示 -->
+                     <p>没有账号？<a href="{{url_for('main.register')}}">点击注册</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+
+</html>
