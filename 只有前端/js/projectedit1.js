@@ -1,65 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 示例项目数据
-    const projectData = {
-        name: '数学建模',
-        category: '比赛',
-        manager: 'John Doe',
-        description: '这是一个数学建模项目',
-        image: 'images/placeholder1.png', // 确保有这个图片文件
-        requirements: '代码手, 建模手',
-        recruitment: '10/20'
-    };
+// 获取元素
+const editButton = document.getElementById('editButton');
+const saveButton = document.getElementById('saveButton');
+const projectName = document.getElementById('projectName');
+const projectCategory = document.getElementById('projectCategory');
+const projectDescription = document.getElementById('projectDescription');
+const formElements = [projectName, projectCategory, projectDescription]; // 将项目字段打包进数组
 
-    // 填充页面信息
-    document.getElementById('projectName').textContent = projectData.name;
-    document.getElementById('projectCategory').textContent = projectData.category;
-    document.getElementById('projectManager').textContent = projectData.manager;
-    document.getElementById('projectDescription').textContent = projectData.description;
-    document.getElementById('projectImage').src = projectData.image;
-    document.getElementById('projectRequirements').textContent = projectData.requirements;
-    document.getElementById('projectRecruitment').textContent = projectData.recruitment;
-});
-
-
-// 处理成员按钮点击事件
-document.querySelectorAll('.messageButton').forEach(button => {
-    button.addEventListener('click', function() {
-        const memberName = this.previousElementSibling.textContent;
-        alert(`向 ${memberName} 发送信息...`); // 这里可以扩展为实际发送信息的逻辑
+// 点击“编辑项目”按钮，启用编辑模式
+editButton.addEventListener('click', function() {
+    formElements.forEach(element => {
+        const input = document.createElement('input'); // 创建输入框
+        input.type = 'text';
+        input.value = element.textContent; // 将元素当前的文本作为输入框的初始值
+        input.setAttribute('data-original-text', element.textContent); // 存储原始文本以便取消时恢复
+        element.replaceWith(input); // 将元素替换为输入框
     });
+    editButton.style.display = 'none'; // 隐藏“编辑项目”按钮
+    saveButton.style.display = 'inline'; // 显示“保存项目”按钮
 });
 
-// 删除项目按钮事件
-document.getElementById('deleteButton').addEventListener('click', function() {
-    const confirmation = confirm("你确定要删除这个项目吗？");
-    if (confirmation) {
-        alert("项目已删除！"); // 这里可以扩展为实际删除项目的逻辑
-        // 可以重定向到其他页面或刷新页面
-        window.location.href = 'index.html'; // 返回到项目列表页面
-    }
-});
+// 点击“保存项目”按钮，保存数据并禁用编辑模式
+saveButton.addEventListener('click', function() {
+    const inputs = document.querySelectorAll('input[type="text"]'); // 获取所有输入框
+    inputs.forEach(input => {
+        const span = document.createElement('span');
+        span.textContent = input.value; // 将输入框中的值作为新的文本
+        input.replaceWith(span); // 将输入框替换为文本
+    });
+    
+    editButton.style.display = 'inline'; // 显示“编辑项目”按钮
+    saveButton.style.display = 'none'; // 隐藏“保存项目”按钮
 
-// 编辑项目按钮事件
-document.getElementById('editButton').addEventListener('click', function() {
-    const projectName = document.getElementById('projectName');
-    const projectCategory = document.getElementById('projectCategory');
-    const projectDescription = document.getElementById('projectDescription');
-
-    // 允许编辑
-    const newName = prompt("输入新的项目名称:", projectName.textContent);
-    if (newName) {
-        projectName.textContent = newName;
-    }
-
-    const newCategory = prompt("输入新的项目分类:", projectCategory.textContent);
-    if (newCategory) {
-        projectCategory.textContent = newCategory;
-    }
-
-    const newDescription = prompt("输入新的项目描述:", projectDescription.textContent);
-    if (newDescription) {
-        projectDescription.textContent = newDescription;
-    }
-
-    alert("项目已更新！"); // 提示用户项目更新
+    // 模拟保存数据到服务器
+    alert('项目已保存');
 });
