@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>项目详情</title>
+            <!--主要使用的字体-->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap">
+            <link href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+            <link rel="icon" type="image/png" href="images/favicon.png">
+            <link rel="stylesheet" href="owl-slider/assets/owl.carousel.min.css">
+            <link rel="stylesheet" href="owl-slider/assets/owl.theme.default.min.css">
+            <link rel="stylesheet" href="fonts/icons-fontawesome/css/all.min.css">
+            <link rel="stylesheet" href="fonts/icons-linear.css">
+            <link href="style.css" rel="stylesheet" type="text/css" />
+            <link href="style-responsive.css" rel="stylesheet" type="text/css" />
+            <script src="js/jquery.js"></script>
+            <script src="owl-slider/owl.carousel.js"></script>
+            <script src="js/scripts.js"></script>
+            <script>
+                jQuery(document).ready(function( $ ) {
+                    $('.counter').counterUp({
+                        delay: 10,
+                        time: 2000
+                    });
+                });
+            </script>	
+    </head>
+    
+    <body>
+        <div class="dashboard">
+            <!--左边菜单栏-->
+            <div class="sidebar" id="sidebar">
+                <div class="profile">
+                    <img src="images/avatar.png" alt="Avatar" class="avatar">
+                    <h3 class="yourname">John Doe</h3>
+                </div>
+                <ul class="lmenu">
+                    <li><a href="hall.html" class="active">项目大厅</a></li>
+                    <li><a href="yourproject.html">项目管理</a></li>
+                    <li><a href="message.html">消息</a></li>
+                    <li><a href="myhome.html">我的</a></li>
+                    <li><a href="Index.html">注销</a></li>
+                </ul>
+            </div>
+            <!--中间内容-->
+            <div class="projectcontent">
+                <h1 id="projectName">项目名称</h1> <!-- 项目名称 -->
+                <div class="project-info">
+                    <p><strong>项目分类:</strong> <span id="projectCategory">科研项目</span></p> <!-- 项目分类 -->
+                    <p><strong>项目负责人:</strong> <span id="projectManager">John Doe</span></p> <!-- 项目负责人 -->
+                    <p><strong>项目描述:</strong></p>
+                    <p id="projectDescription">这是一个关于...的项目描述。</p> <!-- 项目描述 -->
+                    <img id="projectImage" src="images/placeholder.jpg" alt="项目图片" class="project-image"> <!-- 项目图片 -->
+                    <p><strong>项目需求:</strong> <span id="projectRequirements">代码手, 建模手</span></p> <!-- 项目需求 -->
+                    <p><strong>招收人数:</strong> <span id="projectRecruitment">3/5</span></p> <!-- 招收人数 -->
+                </div>
+        
+                <!-- 加入项目按钮 -->
+                <button id="joinProjectButton" class="joinProjectButton">加入项目</button>
+            </div>
+
+        </div>
+
+        <script src="js/projectdetail1.js"></script>
+    </body>
