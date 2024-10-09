@@ -5,7 +5,7 @@ from .config import MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB
 mysql = MySQL()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='templates')
     
     app.config['MYSQL_HOST'] = MYSQL_HOST
     app.config['MYSQL_USER'] = MYSQL_USER

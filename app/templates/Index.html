@@ -9,32 +9,32 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 
-    <link rel="stylesheet" href="owl-slider/assets/owl.carousel.min.css">
-	<link rel="stylesheet" href="owl-slider/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="fonts/icons-fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="fonts/icons-linear.css">
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="style-responsive.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery.js"></script>
-    <script src="owl-slider/owl.carousel.js"></script>
-    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-linear.css') }}">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='style-responsive.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='owl-slider/owl.carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     <script>
-	    jQuery(document).ready(function( $ ) {
-	        $('.counter').counterUp({
-	            delay: 10,
-	            time: 2000
-	        });
-	    });
-    </script>	
+        jQuery(document).ready(function( $ ) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 2000
+            });
+        });
+    </script>    
 </head>
 
 <body id="home">
     <header>
         <header>
             <div class="container">
-                <a href="index.html" class="logo"><img src="images/logo1.png" alt="" /></a>
+                <a href="{{url_for('main.login')}}" class="logo"><img src="{{url_for('static', filename='images/logo1.png')}}" alt="" /></a>
     
                 <div class="menuicons" style="display:none;">
                     <a href="javascript:void();" class="shownav">
@@ -76,7 +76,7 @@
 			<!--bannertextwrap-->
             
             <div class="videoouter">
-                <img src="images/bannerimg.png" alt="" />
+                <img src="{{url_for('static', filename='images/bannerimg.png')}}" alt="" />
             </div>
             <!--bannerimg-->
 
@@ -89,7 +89,7 @@
                     <h2>
                         ProjectPartner
                     </h2>
-                    <form id="loginform" action="login/login.php" method="post">
+                    <form id="loginform" action="login" method="post">
                          <!-- 用户名输入框 -->
                         <label class="full">
                             <input type="text" name="username" placeholder="用户名*" required>
@@ -106,7 +106,7 @@
                         <div class="responsetype"></div>
                     </form>
                     <!-- 注册提示 -->
-                     <p>没有账号？<a href="register.html">点击注册</a></p>
+                     <p>没有账号？<a href="{{url_for('main.register')}}">点击注册</a></p>
                 </div>
             </div>
         </div>

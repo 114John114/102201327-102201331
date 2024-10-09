@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>项目管理</title>
+        <!--主要使用的字体-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='owl-slider/assets/owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-fontawesome/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icons-linear.css') }}">
+        <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ url_for('static', filename='style-responsive.css') }}" rel="stylesheet" type="text/css" />
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='owl-slider/owl.carousel.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script>
+            jQuery(document).ready(function( $ ) {
+                $('.counter').counterUp({
+                    delay: 10,
+                    time: 2000
+                });
+            });
+        </script>    
+    </head>
+    
+    <body>
+        <div class="dashboard">
+            <!--左边菜单栏-->
+            <div class="sidebar" id="sidebar">
+                <div class="profile">
+                    <img src="{{url_for('static',filename='images/avatar.png')}}" alt="Avatar" class="avatar">
+                    <h3 class="yourname">John Doe</h3>
+                </div>
+                <ul class="lmenu">
+                    <li><a href="{{url_for('main.home')}}" class="active">项目大厅</a></li>
+                    <li><a href="{{url_for('main.myprojects')}}">项目管理</a></li>
+                    <li><a href="{{url_for('main.message')}}">消息</a></li>
+                    <li><a href="{{url_for('main.myhome')}}">我的</a></li>
+                    <li><a href="{{url_for('main.logout')}}">注销</a></li>
+                </ul>
+            </div>
+            <!--中间项目内容区域-->
+
+
+        <div class="projectcontent">
+            <h1 class="welcome-title">管理项目</h1>
+            <div class="projects">
+                {% for project in projects %}
+                <div class="project-item" onclick="location.href='project-details.html';">
+                    <div class="project-header">
+                        <span class="category">{{ project.project_type }}</span>
+                        <h2>{{ project.project_name }}</h2>
+                    </div>
+                </div>
+                {% endfor %}
+                    <!--更多项目-->
+                    <!--创建项目按钮-->
+                <div class="create-project" onclick="location.href='{{ url_for('main.createproject')}}'">
+                    <span class="add-icon">+</span>
+                    <p>创建项目</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
