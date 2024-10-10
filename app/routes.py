@@ -29,7 +29,7 @@ def home():
     if 'username' in session:
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("""
-            SELECT p.id, p.project_name,p.project_leader, p.description, p.project_type, GROUP_CONCAT(m.name SEPARATOR ', ') AS members
+            SELECT p.id, p.project_name,p.project_leader, p.description, p.project_type, p.requirements, GROUP_CONCAT(m.name SEPARATOR ', ') AS members
             FROM projects p
             LEFT JOIN members m ON p.id = m.projectid
             GROUP BY p.id, p.project_name

@@ -20,8 +20,8 @@
                         <!--可以添加更多分类-->
                     </select>
 
-                    <label for="manager">项目负责人：</label>
-                    <input type="text" id="manager" name="manager" required>
+                    <label for="manager">(只能填自己)项目负责人：</label>
+                    <input type="text" id="manager" name="manager" value = {{username}} required readonly>
 
                     <label for="project-description">项目描述：</label>
                     <textarea id="project-description" name="description" required></textarea>

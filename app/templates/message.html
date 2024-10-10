@@ -5,3 +5,38 @@
     <body>
         <div class="dashboard">
             {% include 'sidebar.html' %}
+            <!--中间项目内容区域-->
+            <div class="projectcontent">
+                <h1 class="welcome-title">消息</h1>
+                <ul id="contactList">
+                    <li>
+                        <button class="contactButton" data-name="成员1">
+                            <span class="contactName">成员1</span>
+                            <img src="images/avatar1.png" alt="成员1头像" class="contactAvatar">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="contactButton" data-name="成员2">
+                            <span class="contactName">成员2</span>
+                            <img src="images/avatar2.png" alt="成员2头像" class="contactAvatar">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="contactButton" data-name="成员3">
+                            <span class="contactName">成员3</span>
+                            <img src="images/avatar3.png" alt="成员3头像" class="contactAvatar">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="contactButton" data-name="成员4">
+                            <span class="contactName">成员4</span>
+                            <img src="images/avatar4.png" alt="成员4头像" class="contactAvatar">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <script src="js/message.js"></script>
+    </body>
+</html>
