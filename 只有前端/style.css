@@ -1271,3 +1271,84 @@
 		cursor: pointer; /* 鼠标指针 */
 		font-size: 16px; /* 字体大小 */
 	}
+	#applicantList {
+		list-style-type: none;
+		padding: 0;
+	}
+	
+	#applicantList li {
+		margin-bottom: 10px;
+	}
+	.applicantButton {
+		width: 100%;
+		padding: 15px;
+		background-color: #007bff;
+		color: white;
+		border: none;
+		border-radius: 20px;
+		cursor: pointer;
+		font-size: 16px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.applicantName {
+		flex: 1;
+		text-align: left;
+	}
+	
+	.applicantAvatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		margin-left: 10px;
+	}
+	
+	.applicantButton:hover {
+		background-color: #0056b3;
+	}
+	.applicantDetails{
+		margin-bottom:20px;
+	}
+	.applicantDetails p{
+		margin: 10px 0;
+		font-size: 16px;
+	}
+	.availabilityTable {
+		width: 100%;
+		border-collapse: collapse; /* 合并边框 */
+	}
+	.availabilityTable th, .availabilityTable td {
+		padding: 10px;
+    	text-align: left;
+    	border-bottom: 1px solid #ddd;
+	}
+
+	.availabilityTable th {
+		background-color: #007bff;
+    	color: white;
+	}
+	.availabilityTable td {
+		background-color: #555;
+	}
+	.availabilityTable tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+	.accept-button {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		background-color: #28a745;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 16px;
+		margin-top: 20px;
+		text-align: center;
+	}
+	
+	.accept-button:hover {
+		background-color: #218838;
+	}

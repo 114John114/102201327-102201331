@@ -1,6 +1,6 @@
 document.getElementById('joinProjectButton').addEventListener('click', function() {
     // 在这里添加加入项目的逻辑，比如发送请求到服务器
-    alert('你已成功加入该项目！');
+    alert('你已成功申请加入该项目！');
 });
 
 document.addEventListener('DOMContentLoaded', function() {
