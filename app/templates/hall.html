@@ -15,9 +15,9 @@
                             <span class="category">{{ project.project_type }}</span>
                             <h2>{{ project.project_name }}</h2>
                         </div>
-                        <p class="description">招收人员: {{ project.members }}</p>
-                        <p class="participants">项目负责人: {{ project.project_leader }}</p>
-                        <p class="description">{{ project.description }}</p>
+                        <p class="description">项目简负责人: {{ project.project_leader }}</p>
+                        <p class="participants">项目简介: {{ project.description }}</p>
+                        <p class="participants">项目需求：{{ project.requirements }}</p>
                     </div>
                     {% endfor %}
                     <!-- 更多项目 -->

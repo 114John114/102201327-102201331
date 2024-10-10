@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+    {% include 'head.html' %}
+
+    <body>
+        <div class="dashboard">
+            {% include 'sidebar.html' %}
+            <div class="chat-container">
+                <h1>与 <span id="contactName"></span> 的聊天</h1>
+                <div id="chatArea" class="chat-area">
+                    <!-- 聊天记录会在这里展示 -->
+                </div>
+                <div class="input-area">
+                    <input type="text" id="messageInput" placeholder="输入消息..." />
+                    <button id="sendButton">发送</button>
+                </div>
+            </div>
+        
+            <script>
+                // 获取联系人名称
+                const urlParams = new URLSearchParams(window.location.search);
+                const contact = urlParams.get('contact');
+                document.getElementById('contactName').textContent = contact;
+        
+                // 发送消息按钮点击事件
+                document.getElementById('sendButton').addEventListener('click', function() {
+                    const message = document.getElementById('messageInput').value;
+                    const chatArea = document.getElementById('chatArea');
+        
+                    if (message) {
+                        chatArea.innerHTML += `<p><strong>${contact}:</strong> ${message}</p>`;
+                        document.getElementById('messageInput').value = ''; // 清空输入框
+                    }
+                });
+            </script>
+        </div>
+        
+    </body>
+</html>

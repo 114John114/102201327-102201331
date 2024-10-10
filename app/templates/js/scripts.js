@@ -64,12 +64,16 @@ $(document).ready(function() {
 	const saveButton = document.getElementById('saveButton');
 	const cancelButton = document.getElementById('cancelButton');
 	const formElements = document.querySelectorAll('#profileForm input');
+	const passwordInput = document.getElementById('password');
+	const passwordLabel = document.getElementById('passwordword');
 	
 	// 点击“修改信息”按钮时，启用表单编辑
 	editButton.addEventListener('click', function() {
 		formElements.forEach(element => {
 			element.disabled = false; // 启用所有表单输入框
 		});
+		passwordLabel.style.display = 'block'; // 显示
+        passwordInput.style.display = 'block'; // 显示密码输入框
 		editButton.style.display = 'none'; // 隐藏“修改信息”按钮
 		saveButton.style.display = 'inline'; // 显示“保存修改”按钮
 		cancelButton.style.display = 'inline'; // 显示“取消”按钮
@@ -82,6 +86,8 @@ $(document).ready(function() {
 		element.disabled = false;
 	});
 	// 显示和隐藏相应的按钮
+	passwordLabel.style.display = 'none'; // 隐藏
+	passwordInput.style.display = 'none'; // 隐藏密码输入框
 	editButton.style.display = 'inline';
 	saveButton.style.display = 'none';
 	cancelButton.style.display = 'none';
@@ -93,6 +99,8 @@ $(document).ready(function() {
 			element.disabled = true; // 禁用所有表单输入框
 			element.value = element.defaultValue; // 恢复默认值
 		});
+		passwordInput.style.display = 'none'; // 隐藏密码输入框
+        passwordLabel.style.display = 'none'; // 隐藏
 		editButton.style.display = 'inline'; // 显示“修改信息”按钮
 		saveButton.style.display = 'none'; // 隐藏“保存修改”按钮
 		cancelButton.style.display = 'none'; // 隐藏“取消”按钮

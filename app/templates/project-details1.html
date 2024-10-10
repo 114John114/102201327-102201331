@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh">
     {% include 'head.html' %}
-    
+    <script>
+        const project_id = "{{ project.id }}";
+        const username = "{{ username }}";
+    </script>
+    <script src="{{url_for('static',filename='js/projectdetail1.js')}}"></script>
     <body>
         <div class="dashboard">
             {% include 'sidebar.html' %}
@@ -19,10 +23,9 @@
                 </div>
         
                 <!-- 加入项目按钮 -->
-                <button id="joinProjectButton" class="joinProjectButton">加入项目</button>
+                <button id="joinProjectButton" class="joinProjectButton">申请加入项目</button>
             </div>
 
         </div>
-
-        <script src="js/projectdetail1.js"></script>
     </body>
+</html>

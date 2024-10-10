@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, Flask, g
+from flask import Blueprint, render_template, request, redirect, url_for, session, Flask, g, jsonify
 import MySQLdb.cursors
 from . import mysql
 
@@ -29,7 +29,7 @@ def home():
     if 'username' in session:
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("""
-            SELECT p.id, p.project_name,p.project_leader, p.description, p.project_type, GROUP_CONCAT(m.name SEPARATOR ', ') AS members
+            SELECT p.id, p.project_name,p.project_leader, p.description, p.project_type, p.requirements, GROUP_CONCAT(m.name SEPARATOR ', ') AS members
             FROM projects p
             LEFT JOIN members m ON p.id = m.projectid
             GROUP BY p.id, p.project_name
@@ -175,6 +175,24 @@ def project(project_id):
     members = cursor.fetchall()
     return render_template('project-details1.html', username=session['username'], project=project, members=members)
 
+@main.route('/joinproject', methods=['POST'])
+def joinproject():
+    data = request.get_json()
+    project_id = data.get('project_id')
+    username = data.get('username')
+    '''# 检查项目和用户是否存在
+    if project_id not in projects:
+        return jsonify({'success': False, 'message': '项目不存在'})
+    if username not in users:
+        return jsonify({'success': False, 'message': '用户不存在'})'''
+    
+    # 将用户加入数据库的applicants表中
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("INSERT INTO applicants (project_id, username) VALUES (%s, %s)", (project_id, username))
+    mysql.connection.commit()
+    return jsonify({'success': True, 'message': '申请已提交'})
+    
+
 @main.route('/editproject/<int:project_id>', methods=['GET', 'POST'])
 def editproject(project_id):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -183,6 +201,78 @@ def editproject(project_id):
     cursor.execute("SELECT * FROM members WHERE projectid = %s", (project_id,))
     members = cursor.fetchall()
     return render_template('project-edit1.html', username=session['username'], project=project, members=members)
+
+@main.route('/updateproject/<int:project_id>', methods=['POST'])
+def updateproject(project_id):
+    try:
+        print('---------------------updateproject---------------------')
+        # 从请求中获取 JSON 数据
+        data = request.get_json()
+
+        # 检查是否接收到数据
+        if not data:
+            return jsonify({'success': False, 'message': '未收到有效的数据'})
+
+        project_leader = data.get('project_leader')
+        project_type = data.get('project_type')
+        description = data.get('description')
+        #maxmembers = data.get('maxmembers')
+
+        # 更新数据库中的项目数据
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("""
+            UPDATE projects 
+            SET project_type = %s, project_leader = %s, description = %s 
+            WHERE id = %s
+        """, (project_type, project_leader, description, project_id))
+        
+        mysql.connection.commit()
+
+        # 返回成功响应
+        return jsonify({"success": True, "message": "项目已保存"})  # 返回 JSON 格式的数据
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)})  # 返回错误信息
+    
+@main.route('/newpartner/<int:project_id>')
+def newpartner(project_id):
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cur.execute("SELECT username FROM applicants WHERE project_id = %s", (project_id,))
+    applicants = cur.fetchall()
+
+    user_info = []
+    for applicant in applicants:
+        cur.execute("SELECT * FROM users WHERE username = %s", (applicant['username'],))
+        user = cur.fetchone()
+        user_info.append(user)
+
+    return render_template('newpartner.html', username=session['username'], project_id=project_id, applicants=user_info)
+
+@main.route('/newpartner/<int:project_id>/<string:username>')
+def applicant_detail(project_id, username):
+    # 根据 project_id 和 username 获取详细信息
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cur.execute("SELECT * FROM users WHERE username = %s", (username,))
+    applicant = cur.fetchone()
+    if not applicant:
+        return "Applicant not found", 404
+    if applicant and applicant['schedule']:
+            schedule = applicant['schedule'].split(',')  # 假设schedule是一个逗号分隔的字符串
+    else:
+        schedule = []
+    # 渲染模板并显示用户详情
+    return render_template('personalpage.html', project_id=project_id, applicant=applicant, schedule=schedule)
+
+@main.route('/accept_application', methods=['POST'])
+def acceptapplicant():
+    data = request.get_json()
+    project_id = data.get('project_id')
+    username = data.get('username')
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("DELETE FROM applicants WHERE project_id = %s AND username = %s", (project_id, username))
+    mysql.connection.commit()
+    cursor.execute("INSERT INTO members (projectid, name, userid) VALUES (%s, %s)", (project_id, username))
+    mysql.connection.commit()
+    return redirect(url_for('main.newpartner', project_id=project_id))
 
 @main.route('/deleteproject/<int:project_id>')
 def deleteproject(project_id):
