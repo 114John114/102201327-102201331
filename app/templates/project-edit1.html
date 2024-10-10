@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh">
     {% include 'head.html' %}
+    <script src="js/message.js"></script>
+    <script>
+        const project_id = "{{ project.id }}";
+        const newPartnerURL = "{{ url_for('main.newpartner', project_id=project.id) }}";
+    </script>
     <script src="{{url_for('static',filename='js/projectedit1.js')}}"></script>
     <body>
         <div class="dashboard">
             {% include 'sidebar.html' %}
             <!--中间内容-->
             <div class="projectcontent">
-                <h1 id="projectName">项目名称:{{project.project_name}}</h1> <!-- 项目名称 -->
+                <h1 class="welcome-title">项目名称:{{ project.project_name}}</h1> <!-- 项目名称 -->
                 <div class="project-info">
                     <p><strong>项目分类:</strong> <span id="projectCategory">{{project.project_type}}</span></p> <!-- 项目分类 -->
                     <p><strong>项目负责人:</strong> <span id="projectManager">{{project.project_leader}}</span></p> <!-- 项目负责人 -->
                     <p><strong>项目描述:</strong></p>
                     <p id="projectDescription">{{project.description}}</p> <!-- 项目描述 -->
-                    <img id="projectImage" src="{{url_for('static', filename=project.project_image)}}" alt="项目图片" class="project-image"> <!-- 项目图片 -->
+                    <img id="projectImage" src="{{project.project_image}}" alt="项目图片" class="project-image"> <!-- 项目图片 -->
                     <p><strong>项目需求:</strong> <span id="projectRequirements">{{project.requirements}}</span></p> <!-- 项目需求 -->
                     <p><strong>最大招收人数:</strong> <span id="projectRecruitment">{{project.maxmembers}}</span></p> <!-- 招收人数 -->
+                    <div class="button-group">
+                        <button class="saveButton" style="display: none;" id="saveButton">保存项目</button>
+                        <button class="editButton" id="editButton">编辑项目</button>
+                        <button class="deleteButton" id="deleteButton">删除项目</button>
+                    </div>
                 </div>
 
                 <h2>成员列表</h2>
-                <ul id="memberList">
+                <ul id="contactList">
                     {% for member in members %}
-                    <li><span class="member-name">{{member.name}}</span> <button class="messageButton">发送信息</button></li>
+                    <li>
+                        <button class="contactButton" data-name="{{member.username}}">
+                            <span class="contactName">{{member.name}}</span>
+                            <!--<img src="{{member.avatar}}" alt="{{member.username}}头像" class="contactAvatar">-->
+                        </button>
+                    </li>
                     {% endfor %}
                 </ul>
-                <button class="addMemberButton">新增人员</button>
-                <div class="button-group">
-                    <button class="editButton">编辑项目</button>
-                    <button class="deleteButton">删除项目</button>
-                </div>
+                <button class="addMemberButton", id="addMemberButton">新增人员</button>
             </div>
             
         </div>
-
     </body>
+</html>

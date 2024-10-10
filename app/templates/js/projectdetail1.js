@@ -1,26 +1,34 @@
-document.getElementById('joinProjectButton').addEventListener('click', function() {
-    // 在这里添加加入项目的逻辑，比如发送请求到服务器
-    alert('你已成功加入该项目！');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
-    // 示例项目数据
-    const projectData = {
-        name: '数学建模',
-        category: '比赛',
-        manager: 'John Doe',
-        description: '这是一个数学建模项目',
-        image: 'images/placeholder1.png', // 确保有这个图片文件
-        requirements: '代码手, 建模手',
-        recruitment: '10/20'
-    };
+    document.getElementById('joinProjectButton').addEventListener('click', function() {
+        console.log("Button clicked");
+        console.log("project_id:", project_id);
+        console.log("username:", username);
+        
+        // 创建要发送的数据对象
+        const projectData = {
+            project_id: project_id, // 替换为实际的项目 ID
+            username: username // 替换为实际的用户名
+        };
 
-    // 填充页面信息
-    document.getElementById('projectName').textContent = projectData.name;
-    document.getElementById('projectCategory').textContent = projectData.category;
-    document.getElementById('projectManager').textContent = projectData.manager;
-    document.getElementById('projectDescription').textContent = projectData.description;
-    document.getElementById('projectImage').src = projectData.image;
-    document.getElementById('projectRequirements').textContent = projectData.requirements;
-    document.getElementById('projectRecruitment').textContent = projectData.recruitment;
+        // 使用 fetch 发送 POST 请求
+        fetch('/joinproject', { // 替换为实际的路由
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(projectData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('你已成功申请加入该项目！');
+            } else {
+                alert('申请提交失败');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('申请提交失败');
+        });
+    });
 });

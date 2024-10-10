@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+    {% include 'head.html' %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const acceptButton = document.getElementById('acceptApplicationButton');
+        
+        acceptButton.addEventListener('click', function() {
+            // 获取用户名和项目 ID
+            const username = this.getAttribute('data-username');
+            const projectId = this.getAttribute('data-project-id');
+            console.log("username:",username);
+            console.log("projectId:",projectId);
+            // 构建发送的数据对象
+            const requestData = {
+                username: username,
+                project_id: projectId
+            };
+
+            // 发送 POST 请求到后端
+            fetch('/accept_application', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('申请已同意，用户已加入项目成员！');
+                    // 你可以选择刷新页面或更新 UI，移除该用户的申请记录
+                } else {
+                    alert('处理失败: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('处理失败');
+            });
+        });
+    });
+    </script>
+    <body>
+        <div class="dashboard">
+            {% include 'sidebar.html' %}
+            <!--中间内容-->
+            <div class="projectcontent">
+                <h1 class="welcome-title">申请人：{{applicant.username}}<span id="applicantName"></span></h1>
+                <div class="applicantDetails" id="applicantDetails">
+                        <p><strong>邮箱:</strong> <span id="email">{{applicant.mail}}</span></p>
+                        <!--<p><strong>个人简介:</strong></p>
+                        <p id="bio">这是申请人的简介，描述他的背景和兴趣...</p>-->
+                </div>
+                <h2>一周空余时间表</h2>
+                <table class="availabilityTable" id="availabilityTable">
+                    <thead>
+                        <tr>
+                            <th>星期</th>
+                            <th>空余时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>星期一</td>
+                            <td id="monday">{{schedule[0]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期二</td>
+                            <td id="tuesday">{{schedule[1]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期三</td>
+                            <td id="wednesday">{{schedule[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期四</td>
+                            <td id="thursday">{{schedule[3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期五</td>
+                            <td id="friday">{{schedule[4]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期六</td>
+                            <td id="saturday">{{schedule[5]}}</td>
+                        </tr>
+                        <tr>
+                            <td>星期日</td>
+                            <td id="sunday">{{schedule[6]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="acceptApplicationButton" class="accept-button" data-username="{{applicant.username}}" data-project-id="{{project_id}}">同意申请</button>
+            </div>
+
+        </div>
+    </body>
+</html>

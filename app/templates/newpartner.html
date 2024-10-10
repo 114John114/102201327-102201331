@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh">
     {% include 'head.html' %}
-    
+    <div id="projectInfo" data-project-id="{{ project_id }}"></div>
+    <script src="{{url_for('static',filename='js/newpartner.js')}}"></script>
+
     <body>
         <div class="dashboard">
-            {% include 'sidebar.html' %}
+            {% include 'sidebar.html' %}    
+            
+            <div class="projectcontent">
+                <h1 class="welcome-title">申请加入的人员</h1>
+                <ul id="applicantList">
+                    <!-- 申请人的列表项，点击可查看个人主页 -->
+                    {% for applicant in applicants %}
+                    <li>
+                        <button class="applicantButton" data-name="{{applicant.username}}">
+                            <span class="applicantName">{{applicant.username}}</span>
+                            <!--<img src="{{applicant.avatar}}" alt="{{applicant.username}}头像" class="applicantAvatar">-->
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
         </div>
     </body>
 </html>
