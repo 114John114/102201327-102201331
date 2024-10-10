@@ -53,9 +53,35 @@
                     <p><strong>项目负责人:</strong> <span id="projectManager">John Doe</span></p> <!-- 项目负责人 -->
                     <p><strong>项目描述:</strong></p>
                     <p id="projectDescription">这是一个关于数学建模的项目描述。</p> <!-- 项目描述 -->
-                    <img id="projectImage" src="images/placeholder1.png" alt="项目图片" class="project-image"> <!-- 项目图片 -->
+                    <!-- 项目进度条 -->
+                    <div class="progress-bar">
+                        <div class="progress" id="progress1"></div>
+                    </div>
+                    <p>进度：<span id="progressText1">50%</span></p>
+
+                    <!-- 任务列表 -->
+                    <h3>任务进度</h3>
+                    <ul class="task-list">
+                        <li>
+                            <input type="checkbox" id="task1" checked disabled>
+                            <label for="task1">完成文献综述</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="task2">
+                            <label for="task2">设计实验方案</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="task3">
+                            <label for="task3">编写代码实现</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="task4">
+                            <label for="task4">撰写研究报告</label>
+                        </li>
+                    </ul>
                     <p><strong>项目需求:</strong> <span id="projectRequirements">代码手, 建模手</span></p> <!-- 项目需求 -->
                     <p><strong>招收人数:</strong> <span id="projectRecruitment">10/20</span></p> <!-- 招收人数 -->
+                    <img id="projectImage" src="images/placeholder1.png" alt="项目图片" class="project-image"> <!-- 项目图片 -->
                     <div class="button-group">
                         <button class="saveButton" style="display: none;" id="saveButton">保存项目</button>
                         <button class="editButton" id="editButton">编辑项目</button>
@@ -97,4 +123,23 @@
         </div>
         <script src="js/message.js"></script>
         <script src="js/projectedit1.js"></script>
+        <script>
+            // 模拟项目数据
+            const projectData = {
+                tasksCompleted: 1,
+                totalTasks: 4,
+                progress: function() {
+                    return (this.tasksCompleted / this.totalTasks) * 100;
+                }
+            };
+    
+            // 更新进度条和文本
+            const progressElement = document.getElementById('progress1');
+            const progressText = document.getElementById('progressText1');
+    
+            // 设置进度条宽度
+            const progressPercentage = projectData.progress();
+            progressElement.style.width = progressPercentage + '%';
+            progressText.textContent = progressPercentage + '%';
+        </script>
     </body>
