@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const editButton = document.getElementById('editButton');
     const saveButton = document.getElementById('saveButton');
     const projectCategory = document.getElementById('projectCategory');
-    const projectManager = document.getElementById('projectManager');
+    const projectManager = document.getElementById('projectRequirements');
     const projectDescription = document.getElementById('projectDescription');
 
     // 检查是否找到元素

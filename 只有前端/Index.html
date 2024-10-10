@@ -20,14 +20,6 @@
     <script src="js/jquery.js"></script>
     <script src="owl-slider/owl.carousel.js"></script>
     <script src="js/scripts.js"></script>
-    <script>
-	    jQuery(document).ready(function( $ ) {
-	        $('.counter').counterUp({
-	            delay: 10,
-	            time: 2000
-	        });
-	    });
-    </script>	
 </head>
 
 <body id="home">
@@ -89,19 +81,17 @@
                     <h2>
                         ProjectPartner
                     </h2>
-                    <form id="loginform" action="login/login.php" method="post">
+                    <form id="loginform">
                          <!-- 用户名输入框 -->
                         <label class="full">
-                            <input type="text" name="username" placeholder="用户名*" required>
+                            <input type="text" name="username" placeholder="用户名*">
                         </label>
                         <!-- 密码输入框 -->
                         <label class="full">
-                            <input type="password" name="password" placeholder="密码*" required>
+                            <input type="password" name="password" placeholder="密码*">
                         </label>
                         <!-- 登录按钮 -->
-                        <label>
-                        <button type="submit" name="submit" class="btn">登录</button>
-                        </label>
+                        <button type="button" id="loginButton" class="btn">登录</button>
                         <!-- 响应信息框 -->
                         <div class="responsetype"></div>
                     </form>
@@ -112,7 +102,16 @@
         </div>
 
     </div>
-
+    <script>
+        // 获取登录按钮
+        const loginButton = document.getElementById('loginButton');
+        
+        // 点击登录按钮时跳转到大厅页面
+        loginButton.addEventListener('click', function() {
+            // 这里可以跳过任何账号密码的验证
+            window.location.href = 'hall.html';
+        });
+    </script>
 </body>
 
 
