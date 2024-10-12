@@ -24,7 +24,7 @@
                     <div class="button-group">
                         <button class="saveButton" style="display: none;" id="saveButton">保存项目</button>
                         <button class="editButton" id="editButton">编辑项目</button>
-                        <button class="deleteButton" id="deleteButton">删除项目</button>
+                        <button class="deleteButton" id="deleteButton" onclick="location.href='{{ url_for('main.deleteproject', project_id=project.id) }}'">删除项目</button>
                     </div>
                 </div>
 
